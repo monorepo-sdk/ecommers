@@ -1,0 +1,44 @@
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "defaultBase": "main",
+  "targetDefaults": {
+    "typecheck": {
+      "cache": true
+    },
+    "build": {
+      "dependsOn": [
+        "typecheck"
+      ],
+      "cache": true
+    },
+    "lint": {
+      "cache": true
+    }
+  },
+  "plugins": [
+    {
+      "plugin": "@nx/vite/plugin",
+      "options": {
+        "buildTargetName": "vite:build",
+        "testTargetName": "test",
+        "serveTargetName": "vite:serve",
+        "previewTargetName": "vite:preview",
+        "serveStaticTargetName": "serve-static",
+        "typecheckTargetName": "vite:typecheck"
+      }
+    },
+    {
+      "plugin": "@nx/eslint/plugin",
+      "options": {
+        "targetName": "lint"
+      }
+    }
+  ],
+  "generators": {
+    "@nx/react": {
+      "library": {
+        "unitTestRunner": "vitest"
+      }
+    }
+  }
+}
